@@ -52,6 +52,7 @@ export default {}
     color: #fff;
     text-align: center;
     line-height: 48px;
+    background: #2b2f3a;
   }
 }
 .el-menu .el-menu-item:hover,
