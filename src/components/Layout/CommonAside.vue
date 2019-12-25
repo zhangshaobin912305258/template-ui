@@ -13,7 +13,7 @@
       </template>
       <el-menu-item index="1-1">
         <i class="el-icon-location"></i>
-        <span>选项1</span>
+        <span>用户列表</span>
       </el-menu-item>
       <el-menu-item index="1-2">
         <i class="el-icon-location" mini></i>
@@ -51,7 +51,7 @@ export default {}
   h3 {
     color: #fff;
     text-align: center;
-    line-height: 48px;
+    line-height: 50px;
     background: #2b2f3a;
   }
 }

@@ -8,9 +8,14 @@
         <CommonHeader />
       </el-header>
       <el-main>
-        <li class="fa fa-home fa-lg" style="color: #1890ff"></li>
-        <el-button type="primary" @click="getUser">获取用户信息</el-button>
-        <el-button type="primary" @click="getMenu">获取菜单信息</el-button>
+        <!-- <li class="fa fa-home fa-lg" style="color: #1890ff"></li>
+        <el-button type="primary" @click="getUser" size="mini"
+          >获取用户信息</el-button
+        >
+        <el-button type="primary" size="mini" @click="getMenu"
+          >获取菜单信息</el-button
+        > -->
+        <router-view />
       </el-main>
     </el-container>
   </el-container>
@@ -41,4 +46,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-header {
+  height: 50px !important;
+  padding: 0 !important;
+}
+</style>

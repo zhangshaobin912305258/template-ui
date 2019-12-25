@@ -3,9 +3,13 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+//引入子模块
+import app from './modules/app'
 export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    app: app
+  }
 })
