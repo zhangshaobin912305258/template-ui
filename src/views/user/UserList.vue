@@ -1,5 +1,6 @@
 <template>
   <div class="user-list">
+    <!-- 用户列表搜索条件开始 -->
     <div class="search-condition">
       <el-form
         :inline="true"
@@ -53,7 +54,10 @@
         </el-form-item>
       </el-form>
     </div>
+    <!-- 用户列表搜索条件结束 -->
+    <!-- 用户列表开始 -->
     <div class="users">
+      <!-- 用户列表操作按钮组开始 -->
       <div class="user-features">
         <el-button
           type="primary"
@@ -82,6 +86,8 @@
           >导出</el-button
         >
       </div>
+      <!-- 用户列表操作按钮组结束 -->
+      <!-- 用户列表表格开始 -->
       <div class="user-table">
         <el-table
           :data="users"
@@ -145,7 +151,10 @@
         >
         </el-pagination>
       </div>
+      <!-- 用户列表表格结束 -->
     </div>
+    <!-- 用户列表结束 -->
+    <!-- 弹出层开始  -->
     <el-dialog
       :title="dialogFormTitle"
       align="center"
@@ -178,6 +187,7 @@
         >
       </div>
     </el-dialog>
+    <!-- 弹出层结束  -->
   </div>
 </template>
 
@@ -216,12 +226,19 @@ export default {
           address: '上海市普陀区金沙江路 1516 弄'
         }
       ],
+      //当前也
       currentPage: 1,
+      //选中用户列表
       multipleSelection: [],
+      //修改用户弹出框是否显示
       editVisible: false,
+      //删除用户弹出框是否显示
       deleteVisible: false,
+      //弹出框是否显示
       dialogFormVisible: false,
+      //弹出框标题
       dialogFormTitle: '新增用户',
+      //用户表单
       userForm: {
         name: '',
         status: '0'
@@ -229,16 +246,20 @@ export default {
     }
   },
   methods: {
+    //搜索
     search() {
       console.log(this.searchCondition)
     },
+    //处理当前也变化事件
     handleCurrentChange(currentPage) {
       console.log('当前页改变了:' + currentPage)
     },
+    //添加用户
     addUser() {
       this.dialogFormVisible = true
       this.dialogFormTitle = '新增用户'
     },
+    //修改用户
     editUser(index, row) {
       console.log(index)
       console.log(row)
@@ -251,6 +272,7 @@ export default {
       this.dialogFormTitle = '修改用户'
       this.userForm = this.multipleSelection[0]
     },
+    //删除多个用户提示
     deleteUsers() {
       this.$confirm('此操作将永久删除选中的用户, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -270,6 +292,7 @@ export default {
           })
         })
     },
+    //删除单个用户提示
     deleteUser(index, row) {
       this.$confirm(
         '此操作将永久删除选中的用户' + row.name + ', 是否继续?',
@@ -293,9 +316,11 @@ export default {
           })
         })
     },
+    //重置搜索条件
     resetSearchCondition(formName) {
       this.$refs[formName].resetFields()
     },
+    //处理选中用户事件
     handleSelectionChange(val) {
       this.multipleSelection = val
       if (this.multipleSelection.length === 1) {
