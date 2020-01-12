@@ -9,7 +9,9 @@
           type="primary"
           class="not-found-btn-gohome"
           @click="$router.push('/')"
-        >进入首页</el-button>
+        >
+          进入首页
+        </el-button>
       </div>
     </div>
   </div>

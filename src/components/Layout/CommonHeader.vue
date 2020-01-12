@@ -1,14 +1,17 @@
 <template>
   <div class="headBar">
     <div class="collapse-button">
-      <el-button icon="el-icon-s-fold"> </el-button>
+      <el-button icon="el-icon-s-fold" @click="changeCollapse"> </el-button>
     </div>
     <div class="breadcrumb">
       <el-breadcrumb separator-class="el-icon-arrow-right">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-        <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-        <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="currentMenu">{{
+          currentMenu.parentLabel
+        }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="currentMenu" :to="currentMenu.name">
+          {{ currentMenu.label }}</el-breadcrumb-item
+        >
       </el-breadcrumb>
     </div>
     <div class="right-menu">
@@ -27,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -39,6 +43,16 @@ export default {
       activeIndex: '1',
       langVisible: false
     }
+  },
+  methods: {
+    changeCollapse() {
+      this.$store.commit('onCollapse')
+    }
+  },
+  computed: {
+    ...mapState({
+      currentMenu: state => state.app.currentMenu
+    })
   }
 }
 </script>
@@ -51,16 +65,25 @@ export default {
   border-bottom: 1px solid #ccc;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   .collapse-button {
+    width: 50px;
+    height: 100%;
     float: left;
     margin-right: 10px;
     .el-button {
+      display: block;
       border: none;
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      box-sizing: border-box;
+      // padding: 10px;
     }
   }
   .breadcrumb {
     float: left;
     .el-breadcrumb {
       line-height: 50px;
+      cursor: pointer;
     }
   }
   .right-menu {
